@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cascading.css') }}">
+    <meta charset="utf-8">
+    <title>Assignment</title>
+</head>
+<body>
+
+<img src="static/images/stars-bg.png" alt="Star background" class="bg-static">
+
+<video autoplay loop muted class="bg-video">
+    <source src="static/images/jupiter-bg.webm" alt="Planet with rotating asteroids" type="video/webm">
+</video>
+
+<p><a href="/logout" id="logout">LOGOUT</a></p>
+
+<div class="nav">
+    <div class="tail-text1">
+        <div id="sum-container1" class="sum-container">
+            <p id="sum1" class="sum">
+                <a>
+                    LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR
+                </a>
+            </p>
+        </div>
+        <p id="label-text1" class="label-text">
+            <a>SUMMARY</a>
+        </p>
+        <img src="static/images/tail.svg" alt="End of a label" id="tail1" class="tail">
+    </div>
+
+    <div class="tail-text2">
+        <div id="sum-container2" class="sum-container">
+            <p id="sum2" class="sum">
+                <a>
+                    LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR
+                </a>
+            </p>
+        </div>
+        <p id="label-text2" class="label-text">
+            <a>EDUCATION</a>
+        </p>
+        <img src="static/images/tail.svg" alt="End of a label" id="tail2" class="tail">
+    </div>
+
+    <div class="tail-text3">
+        <div id="sum-container3" class="sum-container">
+            <p id="sum3" class="sum">
+                <a>
+                    LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR
+                </a>
+            </p>
+        </div>
+        <p id="label-text3" class="label-text">
+            <a>SKILLS</a>
+        </p>
+        <img src="static/images/tail.svg" alt="End of a label" id="tail3" class="tail">
+    </div>
+
+    <div class="tail-text4">
+        <div id="sum-container4" class="sum-container">
+            <p id="sum4" class="sum">
+                <a>
+                    LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR
+                </a>
+            </p>
+        </div>
+        <p id="label-text4" class="label-text">
+            <a>INTERESTS</a>
+        </p>
+        <img src="static/images/tail.svg" alt="End of a label" id="tail4" class="tail">
+    </div>
+
+    <div class="tail-text5">
+        <div id="sum-container5" class="sum-container">
+            <p id="sum5" class="sum">
+                <a>
+                    LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT, SED DO EIUSMOD TEMPOR
+                </a>
+            </p>
+        </div>
+        <p id="label-text5" class="label-text">
+            <a>REVIEWS</a>
+        </p>
+        <img src="static/images/tail.svg" alt="End of a label" id="tail5" class="tail">
+    </div>
+
+    <img src="static/images/body.svg" alt="Start of a label" id="body1" class="body">
+    <img src="static/images/body.svg" alt="Start of a label" id="body2" class="body">
+    <img src="static/images/body.svg" alt="Start of a label" id="body3" class="body">
+    <img src="static/images/body.svg" alt="Start of a label" id="body4" class="body">
+    <img src="static/images/body.svg" alt="Start of a label" id="body5" class="body">
+</div>
+
+<div class="section">
+    <div class="content-container">
+        <img alt="Section header" id="header">
+        <p id="para"></p>
+    </div>
+    <img src="static/images/arrow.svg" alt="Rightwards pointing arrow of a section" class="arrow">
+</div>
+
+<div class="pop-bg"></div>
+
+<div class="login-container">
+    <img src="static/images/cross.svg" alt="Closing button" id="cross">
+
+    <p id="write-rev-link">Want to write a review?</p>
+    <div id="rev-container">
+        {% for review in reviews %}
+        <div class="rev-box">
+            <div class="name-rating-box">
+                <p class="rev-name">{{ review[0] }}</p>
+                {% for i in range(review[1]) %}
+                <img src="static/images/star.svg" alt="Filled-in review star" class="star">
+                {% endfor %}
+                {% for i in range(5 - review[1]) %}
+                <img src="static/images/star-outline.svg" alt="Outline of a review star" class="star">
+                {% endfor %}
+            </div>
+            <div class="rev-separator"></div>
+            <p class="rev-block">{{ review[2] }}</p>
+            {% if review[0] == full_name %}
+            <a href="/remove/{{ review[0] }}">
+                <img src="static/images/cross.svg" alt="Button to remove a review" id="cross2">
+            </a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <img src="static/images/back.svg" alt="Back button" id="back">
+    <form id="form2" method="post">
+        <input type="radio" class="radio-stars" id="1star" name="rating" value="1">
+        <input type="radio" class="radio-stars" id="2star" name="rating" value="2">
+        <input type="radio" class="radio-stars" id="3star" name="rating" value="3">
+        <input type="radio" class="radio-stars" id="4star" name="rating" value="4">
+        <input type="radio" class="radio-stars" id="5star" name="rating" value="5">
+        <div class="form-label2">Write your review here:</div>
+        <textarea id="review" name="review" rows="4" cols="50"></textarea>
+        <main class="submit" id="rev-submit">
+            <input type="submit" value="SUBMIT">
+        </main>
+    </form>
+    <div id="write-stars">
+        <img alt="Large review star" class="big-star" id="big-star1">
+        <img alt="Large review star" class="big-star" id="big-star2">
+        <img alt="Large review star" class="big-star" id="big-star3">
+        <img alt="Large review star" class="big-star" id="big-star4">
+        <img alt="Large review star" class="big-star" id="big-star5">
+    </div>
+</div>
+
+<div class="film-grain"></div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    var sec1 = "Lorem ipsum dolor sit amet, decore blandit sea at, facer efficiendi at est. Bonorum voluptatum in per, lorem error soleat has id, sint erat assum vis et. Brute vocibus expetendis an pri, cu labore intellegat mea. An audiam omnesque moderatius sea, usu facilisi deseruisse honestatis ut. Dicam abhorreant ei cum, nec natum graece electram cu.";
+
+    var sec2 = "Lorem ipsum dolor sit amet, decore blandit sea at, facer efficiendi at est. Bonorum voluptatum in per, lorem error soleat has id, sint erat assum vis et. Brute vocibus expetendis an pri, cu labore intellegat mea. An audiam omnesque moderatius sea, usu facilisi deseruisse honestatis ut. Dicam abhorreant ei cum, nec natum graece electram cu.<br><br>Eum ei fastidii splendide argumentum, ea vim decore oporteat liberavisse. Ne nihil graecis eloquentiam nec, vis postea petentium et. Dolorum epicurei posidonium vel ea, qui tempor conclusionemque id, ex eos copiosae philosophia. His laboramus assueverit neglegentur ut, ex has causae minimum. Ea stet timeam mei, quem epicurei eos at. Erant apeirian te pri, duo noster moderatius at. Sed agam ullum cu, ius luptatum cotidieque ne, vero scripserit cu sed.";
+
+    var sec3 = "Lorem ipsum dolor sit amet, decore blandit sea at, facer efficiendi at est. Bonorum voluptatum in per, lorem error soleat has id, sint erat assum vis et. Brute vocibus expetendis an pri, cu labore intellegat mea. An audiam omnesque moderatius sea, usu facilisi deseruisse honestatis ut. Dicam abhorreant ei cum, nec natum graece electram cu.<br><br>Eum ei fastidii splendide argumentum, ea vim decore oporteat liberavisse. Ne nihil graecis eloquentiam nec, vis postea petentium et. Dolorum epicurei posidonium vel ea, qui tempor conclusionemque id, ex eos copiosae philosophia. His laboramus assueverit neglegentur ut, ex has causae minimum. Ea stet timeam mei, quem epicurei eos at. Erant apeirian te pri, duo noster moderatius at. Sed agam ullum cu, ius luptatum cotidieque ne, vero scripserit cu sed.<br><br>Vix ei discere sensibus, eam eros senserit persequeris ad, ad volumus accusata pri. In eos deleniti voluptatibus, vim ex legendos scribentur. Paulo salutatus ne mei. Posse recteque deterruisset cum in, porro aeterno mei an. Nec id volumus dissentias, modo officiis cu mea.";
+
+    var sec4 = "Lorem ipsum dolor sit amet, decore blandit sea at, facer efficiendi at est. Bonorum voluptatum in per, lorem error soleat has id, sint erat assum vis et. Brute vocibus expetendis an pri, cu labore intellegat mea. An audiam omnesque moderatius sea, usu facilisi deseruisse honestatis ut. Dicam abhorreant ei cum, nec natum graece electram cu.<br><br>Eum ei fastidii splendide argumentum, ea vim decore oporteat liberavisse. Ne nihil graecis eloquentiam nec, vis postea petentium et. Dolorum epicurei posidonium vel ea, qui tempor conclusionemque id, ex eos copiosae philosophia. His laboramus assueverit neglegentur ut, ex has causae minimum. Ea stet timeam mei, quem epicurei eos at. Erant apeirian te pri, duo noster moderatius at. Sed agam ullum cu, ius luptatum cotidieque ne, vero scripserit cu sed.<br><br>Vix ei discere sensibus, eam eros senserit persequeris ad, ad volumus accusata pri. In eos deleniti voluptatibus, vim ex legendos scribentur. Paulo salutatus ne mei. Posse recteque deterruisset cum in, porro aeterno mei an. Nec id volumus dissentias, modo officiis cu mea.<br><br>Offendit scribentur per at, aeque soleat sit ea. Alii mollis mei ea, doctus scripta denique quo ut. Purto audiam splendide an sea, alienum scripserit philosophia nam te. Ne tale disputando vel, quem diceret te usu.";
+
+    $(document).on('mousemove', (event) => {
+        $('.bg-video').css({
+            'left': 'calc(-7.5vw + ' + event.clientX * -0.1 + 'px)',
+            'top': 'calc(-15vh + ' + event.clientY * -0.1 + 'px)',
+        });
+        $('.bg-static').css({
+            'left': 'calc(-5vw + ' + event.clientX * -0.02 + 'px)',
+            'top': 'calc(-5vh + ' + event.clientY * -0.02 + 'px)',
+        });
+        $('.nav').css({
+            'left': event.clientX * -0.1 + 'px',
+            'top': event.clientY * -0.1 + 'px',
+        });
+    });
+
+    $(document).ready(function () {
+        $('#star5').toggleClass('active');
+
+        $('#label-text1 a').click(function () {
+            if (($('.section').hasClass('active')) && ($('#header').attr('src') !== 'static/images/header1.svg')) {
+                $('.section').toggleClass('active');
+                setTimeout(function () {
+                    $('#header').attr('src', 'static/images/header1.svg');
+                    $('.content-container p').html(sec1);
+                    $('.section').toggleClass('active');
+                }, 1000);
+            } else {
+                $('#header').attr('src', 'static/images/header1.svg');
+                $('.content-container p').html(sec1);
+                $('.section').toggleClass('active');
+            }
+        });
+        $('#sum1 a').click(function () {
+            if (($('.section').hasClass('active')) && ($('#header').attr('src') !== 'static/images/header1.svg')) {
+                $('.section').toggleClass('active');
+                setTimeout(function () {
+                    $('#header').attr('src', 'static/images/header1.svg');
+                    $('.content-container p').html(sec1);
+                    $('.section').toggleClass('active');
+                }, 1000);
+            } else {
+                $('#header').attr('src', 'static/images/header1.svg');
+                $('.content-container p').html(sec1);
+                $('.section').toggleClass('active');
+            }
+        });
+
+        $('#label-text2 a').click(function () {
+            if (($('.section').hasClass('active')) && ($('#header').attr('src') !== 'static/images/header2.svg')) {
+                $('.section').toggleClass('active');
+                setTimeout(function () {
+                    $('#header').attr('src', 'static/images/header2.svg');
+                    $('.content-container p').html(sec2);
+                    $('.section').toggleClass('active');
+                }, 1000);
+            } else {
+                $('#header').attr('src', 'static/images/header2.svg');
+                $('.content-container p').html(sec2);
+                $('.section').toggleClass('active');
+            }
+        });
+        $('#sum2 a').click(function () {
+            if (($('.section').hasClass('active')) && ($('#header').attr('src') !== 'static/images/header2.svg')) {
+                $('.section').toggleClass('active');
+                setTimeout(function () {
+                    $('#header').attr('src', 'static/images/header2.svg');
+                    $('.content-container p').html(sec2);
+                    $('.section').toggleClass('active');
+                }, 1000);
+            } else {
+                $('#header').attr('src', 'static/images/header2.svg');
+                $('.content-container p').html(sec2);
+                $('.section').toggleClass('active');
+            }
+        });
+
+        $('#label-text3 a').click(function () {
+            if (($('.section').hasClass('active')) && ($('#header').attr('src') !== 'static/images/header3.svg')) {
+                $('.section').toggleClass('active');
+                setTimeout(function () {
+                    $('#header').attr('src', 'static/images/header3.svg');
+                    $('.content-container p').html(sec3);
+                    $('.section').toggleClass('active');
+                }, 1000);
+            } else {
+                $('#header').attr('src', 'static/images/header3.svg');
+                $('.content-container p').html(sec3);
+                $('.section').toggleClass('active');
+            }
+        });
+        $('#sum3 a').click(function () {
+            if (($('.section').hasClass('active')) && ($('#header').attr('src') !== 'static/images/header3.svg')) {
+                $('.section').toggleClass('active');
+                setTimeout(function () {
+                    $('#header').attr('src', 'static/images/header3.svg');
+                    $('.content-container p').html(sec3);
+                    $('.section').toggleClass('active');
+                }, 1000);
+            } else {
+                $('#header').attr('src', 'static/images/header3.svg');
+                $('.content-container p').html(sec3);
+                $('.section').toggleClass('active');
+            }
+        });
+
+        $('#label-text4 a').click(function () {
+            if (($('.section').hasClass('active')) && ($('#header').attr('src') !== 'static/images/header4.svg')) {
+                $('.section').toggleClass('active');
+                setTimeout(function () {
+                    $('#header').attr('src', 'static/images/header4.svg');
+                    $('.content-container p').html(sec4);
+                    $('.section').toggleClass('active');
+                }, 1000);
+            } else {
+                $('#header').attr('src', 'static/images/header4.svg');
+                $('.content-container p').html(sec4);
+                $('.section').toggleClass('active');
+            }
+        });
+        $('#sum4 a').click(function () {
+            if (($('.section').hasClass('active')) && ($('#header').attr('src') !== 'static/images/header4.svg')) {
+                $('.section').toggleClass('active');
+                setTimeout(function () {
+                    $('#header').attr('src', 'static/images/header4.svg');
+                    $('.content-container p').html(sec4);
+                    $('.section').toggleClass('active');
+                }, 1000);
+            } else {
+                $('#header').attr('src', 'static/images/header4.svg');
+                $('.content-container p').html(sec4);
+                $('.section').toggleClass('active');
+            }
+        });
+
+        $('#label-text5 a').click(function () {
+            $('.pop-bg').css({
+                'display': 'block',
+            });
+            $('.login-container').toggleClass('active');
+        });
+        $('#sum5 a').click(function () {
+            $('.pop-bg').css({
+                'display': 'block',
+            });
+            $('.login-container').toggleClass('active');
+        });
+
+        $('.pop-bg').click(function () {
+            $('.pop-bg').css({
+                'display': 'none',
+            });
+            $('.login-container').toggleClass('active');
+        });
+
+        $('#cross').click(function () {
+            $('.pop-bg').css({
+                'display': 'none',
+            });
+            $('.login-container').toggleClass('active');
+        });
+
+        $('#write-rev-link').click(function () {
+            $('#write-rev-link').css({
+                'display': 'none',
+            });
+            $('#rev-container').css({
+                'display': 'none',
+            });
+            $('#back').css({
+                'display': 'block',
+            });
+            $('#write-stars').css({
+                'display': 'flex',
+            });
+            $('#form2').css({
+                'display': 'block',
+            });
+        });
+
+        $('#back').click(function () {
+            $('#write-rev-link').css({
+                'display': 'block',
+            });
+            $('#rev-container').css({
+                'display': 'flex',
+            });
+            $('#back').css({
+                'display': 'none',
+            });
+            $('#write-stars').css({
+                'display': 'none',
+            });
+            $('#form2').css({
+                'display': 'none',
+            });
+        });
+
+
+        $('#big-star1').click(function () {
+            $('.big-star').css({
+                'content': 'url("static/images/star-outline.svg")',
+            });
+            $('#big-star1').css({
+                'content': 'url("static/images/star.svg")',
+            });
+
+            $("#1star").prop("checked", false);
+            $("#2star").prop("checked", false);
+            $("#3star").prop("checked", false);
+            $("#4star").prop("checked", false);
+            $("#5star").prop("checked", false);
+
+            $("#1star").prop("checked", true);
+        });
+
+        $('#big-star2').click(function () {
+            $('.big-star').css({
+                'content': 'url("static/images/star-outline.svg")',
+            });
+            $('#big-star1').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star2').css({
+                'content': 'url("static/images/star.svg")',
+            });
+
+            $("#1star").prop("checked", false);
+            $("#2star").prop("checked", false);
+            $("#3star").prop("checked", false);
+            $("#4star").prop("checked", false);
+            $("#5star").prop("checked", false);
+
+            $("#2star").prop("checked", true);
+        });
+
+        $('#big-star3').click(function () {
+            $('.big-star').css({
+                'content': 'url("static/images/star-outline.svg")',
+            });
+            $('#big-star1').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star2').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star3').css({
+                'content': 'url("static/images/star.svg")',
+            });
+
+            $("#1star").prop("checked", false);
+            $("#2star").prop("checked", false);
+            $("#3star").prop("checked", false);
+            $("#4star").prop("checked", false);
+            $("#5star").prop("checked", false);
+
+            $("#3star").prop("checked", true);
+        });
+
+        $('#big-star4').click(function () {
+            $('.big-star').css({
+                'content': 'url("static/images/star-outline.svg")',
+            });
+            $('#big-star1').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star2').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star3').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star4').css({
+                'content': 'url("static/images/star.svg")',
+            });
+
+            $("#1star").prop("checked", false);
+            $("#2star").prop("checked", false);
+            $("#3star").prop("checked", false);
+            $("#4star").prop("checked", false);
+            $("#5star").prop("checked", false);
+
+            $("#4star").prop("checked", true);
+        });
+
+        $('#big-star5').click(function () {
+            $('.big-star').css({
+                'content': 'url("static/images/star-outline.svg")',
+            });
+            $('#big-star1').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star2').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star3').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star4').css({
+                'content': 'url("static/images/star.svg")',
+            });
+            $('#big-star5').css({
+                'content': 'url("static/images/star.svg")',
+            });
+
+            $("#1star").prop("checked", false);
+            $("#2star").prop("checked", false);
+            $("#3star").prop("checked", false);
+            $("#4star").prop("checked", false);
+            $("#5star").prop("checked", false);
+
+            $("#5star").prop("checked", true);
+        });
+    });
+</script>
+</body>
+</html>
